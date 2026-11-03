@@ -19,4 +19,19 @@ orgs.newOrg('technology.bucky', 'eclipse-bucky') {
       default_workflow_permissions: "read",
     },
   },
+  _repositories+:: [
+    orgs.newRepo('eclipse-bucky') {
+      description: "Source code of Eclipse Bucky",
+      allow_merge_commit: false,
+      allow_update_branch: true,
+      delete_branch_on_merge: true,
+      dependabot_security_updates_enabled: true,
+      web_commit_signoff_required: false,
+      branch_protection_rules: [
+        orgs.newBranchProtectionRule('main') {
+          required_approving_review_count: 1,
+        },
+      ],
+    },
+  ],
 }
